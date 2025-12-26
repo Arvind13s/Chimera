@@ -1,0 +1,7 @@
+moviepy==1.0.3
+edge-tts
+google-generativeai
+requests
+python-dotenv
+imageio-ffmpeg
+decorator==4.4.2
