@@ -1,12 +1,26 @@
-# 🤖 AutoTuber (Project Chimera)
+🦁 Project Chimera
 
-Fully autonomous, agentic AI that generates viral YouTube Shorts end‑to‑end: brainstorming, scriptwriting, stock‑footage sourcing, neural voiceover, and final editing — all without manual intervention.
+**Hey guys, meet Chimera.**
 
-Chimera fuses Groq LLM + Edge‑TTS + Pexels + MoviePy to render 9:16 Shorts and saves metadata alongside the video.
+Chimera is an **Agentic AI** that lives in your terminal. It autonomously creates 50-60s vertical videos with its own brain, voice, and eyes.
+
+I didn’t write the script. I didn’t pick the clips. I didn’t edit a single frame.
+I just hit "Run," and Chimera took over.
 
 ---
 
-## Features
+## 🤖 How It Works
+
+It’s not just a script; it’s a **Multi-Agent System** where four distinct AI "employees" work together to build a video from scratch:
+
+* 🧠 **The Brain (Groq + Llama 3):** It brainstorms its own viral concepts (using "Chaos Mode" for randomness) and writes a structured story.
+* 👁️ **The Eyes (Pexels API):** It scours stock footage libraries using a custom **Context-Aware** search engine (so it knows "Blue" means "Ocean," not "Blue Shirt").
+* 🎙️ **The Voice (Edge-TTS):** It generates human-quality neural voiceovers in real-time.
+* 🎬 **The Hands (MoviePy):** It edits, resizes, crops, and renders the final video file completely on its own.
+
+---
+
+## 🚀Features
 
 - 🧠 Hyper‑fast scriptwriting via Groq (`llama-3.3-70b-versatile`).
 - 🌪️ Chaos Mode: random niches (Space, Dark Psychology, Ancient History, etc.).
