@@ -201,6 +201,3 @@ Contributions welcome! Improvements to prompts, visual selection logic, or Movie
 
 ---
 
-## Disclaimer
-
-This tool is for educational purposes. Always review generated content before publishing and ensure you comply with YouTube policies, content rights, and attribution requirements (e.g., Pexels license). The author is not responsible for misuse.
