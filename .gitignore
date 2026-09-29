@@ -2,15 +2,36 @@
 __pycache__/
 *.pyc
 *.pyo
+*.egg-info/
 
 # Virtual env
 .venv/
+venv/
 
 # OS
 *.DS_Store
+Thumbs.db
 
 # Environment secrets
 .env
 
-# Render artifacts
-temp_render.mp4
+# Chimera outputs & temp
+outputs/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Frontend build
+frontend/node_modules/
+frontend/dist/
+
+# Misc
+.pytest_cache/
+.usage_data.json
+.users_data.json
+backend/data/*.json
+data/*.json
+

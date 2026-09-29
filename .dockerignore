@@ -1,0 +1,38 @@
+# Ignore environment secrets (CRITICAL: prevents secrets from baking into image)
+.env
+.env.*
+!.env.example
+
+# Git
+.git
+.gitignore
+
+# Virtual environments
+.venv
+venv
+ENV
+
+# Python cache & bytecode
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache
+
+# Outputs & temporary files
+outputs/*
+!outputs/.gitkeep
+data/*
+!data/.gitkeep
+backend/data/*
+!backend/data/.gitkeep
+
+# IDE configs
+.vscode
+.idea
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db

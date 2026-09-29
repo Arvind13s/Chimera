@@ -1,0 +1,491 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Chimera — Autonomous Multi-Agent AI Video Creation Studio. Generate viral short-form video with six AI agents." />
+  <title>Chimera — AI Video Studio</title>
+  <link rel="icon" type="image/png" href="/logo.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS via the no-build Play CDN — utility classes only;
+       the design system's colors/components/animations live in styles.css -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+
+  <!-- Ambient background — soft drifting glows, fixed behind all content -->
+  <div class="ambient-bg" aria-hidden="true">
+    <div class="ambient-blob ambient-blob--primary"></div>
+    <div class="ambient-blob ambient-blob--secondary"></div>
+    <div class="ambient-blob ambient-blob--accent"></div>
+    <div class="ambient-blob ambient-blob--float1"></div>
+    <div class="ambient-blob ambient-blob--float2"></div>
+  </div>
+
+  <!-- ═══════════════════════ Header ═══════════════════════ -->
+  <header id="site-header" class="fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300"
+          style="background: var(--header-bg); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid var(--bay-border);">
+    <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-2.5 no-underline" aria-label="Chimera home">
+        <img src="/logo.png" alt="" class="w-8 h-8 object-contain" />
+        <span class="text-lg font-bold tracking-tight" style="color: var(--text-primary);">Chimera</span>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-1" aria-label="Main navigation">
+        <a href="#pipeline" class="nav-link px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200" style="color: var(--text-secondary);">Pipeline</a>
+        <a href="#studio" class="nav-link px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200" style="color: var(--text-secondary);">Studio</a>
+        <a href="#about-project" class="nav-link px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200" style="color: var(--text-secondary);">About Project</a>
+        <a href="#about-me" class="nav-link px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200" style="color: var(--text-secondary);">About Me</a>
+        <a href="https://github.com/Arvind13s/Chimera" target="_blank" rel="noopener noreferrer" class="nav-link px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200" style="color: var(--text-secondary);">GitHub</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <button id="theme-toggle" class="w-9 h-9 rounded-lg flex items-center justify-center text-sm transition-colors duration-200" style="background: var(--bay-surface); color: var(--text-primary); border: 1px solid var(--bay-border);" aria-label="Toggle theme">
+          🌓
+        </button>
+        <div id="header-auth"></div>
+
+        <button type="button" id="mobile-nav-toggle" class="md:hidden w-9 h-9 rounded-lg flex items-center justify-center text-sm"
+                style="background: var(--bay-surface); color: var(--text-primary); border: 1px solid var(--bay-border);"
+                aria-label="Open menu" aria-expanded="false">☰</button>
+      </div>
+    </div>
+
+    <nav id="mobile-nav" class="md:hidden hidden px-4 pb-4 flex flex-col gap-1" style="border-top: 1px solid var(--bay-border); background: var(--header-bg);" aria-label="Mobile navigation">
+      <a href="#pipeline" class="px-4 py-2.5 rounded-lg text-sm font-medium" style="color: var(--text-primary);">Pipeline</a>
+      <a href="#studio" class="px-4 py-2.5 rounded-lg text-sm font-medium" style="color: var(--text-primary);">Studio</a>
+      <a href="#about-project" class="px-4 py-2.5 rounded-lg text-sm font-medium" style="color: var(--text-primary);">About Project</a>
+      <a href="#about-me" class="px-4 py-2.5 rounded-lg text-sm font-medium" style="color: var(--text-primary);">About Me</a>
+      <a href="https://github.com/Arvind13s/Chimera" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 rounded-lg text-sm font-medium" style="color: var(--text-secondary);">GitHub</a>
+    </nav>
+  </header>
+
+  <main class="relative z-10 flex-1 flex flex-col">
+
+    <!-- ═══════════════════════ Hero ═══════════════════════ -->
+    <section class="relative min-h-[90vh] flex flex-col items-center justify-center pt-28 pb-16 px-4 sm:px-6 lg:px-8">
+      <div class="relative z-10 text-center max-w-4xl w-full mx-auto flex flex-col items-center">
+
+        <div class="relative mb-10 w-64 h-64 sm:w-72 sm:h-72 flex items-center justify-center" aria-hidden="true">
+          <!-- Subtle ambient soft glow behind the lion -->
+          <div class="absolute inset-4 rounded-full logo-glow-breathe" style="background: radial-gradient(circle, var(--tally-red-glow) 0%, var(--scope-teal-soft) 40%, transparent 70%); filter: blur(24px);"></div>
+
+          <!-- The Chimera Lion Logo (clean and minimal) -->
+          <img src="/logo.png" alt="Chimera AI Engine" class="relative w-48 h-48 sm:w-56 sm:h-56 object-contain logo-breathe" style="z-index: 2;" />
+        </div>
+
+        <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6" style="line-height: 1.08; color: var(--text-primary);">
+          Your production line for<br />short-form video
+        </h1>
+
+        <p class="text-lg sm:text-xl max-w-2xl mb-4" style="color: var(--text-secondary); line-height: 1.5;">
+          Six agents. One pipeline. Topic in, finished video out.
+        </p>
+
+        <p class="text-sm max-w-lg mb-10" style="color: var(--text-label);">
+          Powered by Groq LLM, Edge-TTS, and dual stock video APIs. No manual editing required.
+        </p>
+
+        <div class="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
+          <a href="#studio" class="btn-primary text-base py-3.5 px-10 w-full sm:w-auto">Start rendering</a>
+          <a href="#pipeline" class="btn-secondary text-base py-3 px-8 w-full sm:w-auto">See the pipeline</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════ Pipeline ═══════════════════════ -->
+    <section id="pipeline" class="relative py-20 sm:py-24 px-4 sm:px-6 lg:px-8">
+      <div class="max-w-6xl w-full mx-auto">
+        <div class="max-w-2xl mx-auto text-center mb-14">
+          <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-4" style="color: var(--text-primary);">The pipeline</h2>
+          <p class="text-base sm:text-lg" style="color: var(--text-secondary);">
+            Each agent handles one stage of production, then hands off to the next. The full sequence runs autonomously.
+          </p>
+        </div>
+
+        <div id="pipeline-desktop" class="hidden md:block"></div>
+        <div id="pipeline-mobile" class="md:hidden"></div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════ Studio ═══════════════════════ -->
+    <section id="studio" class="relative py-20 sm:py-24 px-4 sm:px-6 lg:px-8">
+      <div class="max-w-7xl w-full mx-auto">
+        <div class="max-w-2xl mx-auto text-center mb-12">
+          <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-4" style="color: var(--text-primary);">Studio</h2>
+          <p class="text-base sm:text-lg" style="color: var(--text-secondary);">Configure your video or let the agents decide everything.</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+
+          <!-- Left: Settings -->
+          <div class="lg:col-span-5">
+            <form id="generate-form" class="surface p-6 sm:p-8">
+              <div class="flex items-center justify-between mb-6 pb-4" style="border-bottom: 1px solid var(--bay-border);">
+                <h3 class="text-base font-semibold" style="color: var(--text-primary);">Settings</h3>
+                <span id="settings-tally" class="tally-light tally-light--active hidden" aria-label="Recording in progress"></span>
+              </div>
+
+              <div class="flex flex-col gap-5">
+                <div>
+                  <label for="category-select" class="text-xs font-medium mb-2 block" style="color: var(--text-label);">Category</label>
+                  <select id="category-select" class="select-field">
+                    <option value="">Any random category</option>
+                  </select>
+                </div>
+
+                <div id="niche-wrap" class="hidden">
+                  <label for="niche-select" class="text-xs font-medium mb-2 block" style="color: var(--text-label);">Niche</label>
+                  <select id="niche-select" class="select-field"></select>
+                </div>
+
+                <div>
+                  <div class="flex items-center justify-between mb-2">
+                    <label for="custom-topic" class="text-xs font-medium" style="color: var(--text-label);">Custom topic</label>
+                    <span class="text-[11px]" style="color: var(--text-muted);">Optional</span>
+                  </div>
+                  <input id="custom-topic" type="text" class="input-field text-sm" placeholder="e.g. Mystery of the Bermuda Triangle" maxlength="200" />
+                  <div id="topic-chips" class="mt-2.5 flex flex-wrap gap-1.5"></div>
+                </div>
+
+                <div>
+                  <label for="voice-select" class="text-xs font-medium mb-2 block" style="color: var(--text-label);">Voice</label>
+                  <select id="voice-select" class="select-field">
+                    <option value="Christopher (Male, US)" selected>Christopher (Male, US)</option>
+                  </select>
+                </div>
+
+                <button type="submit" id="generate-submit" class="btn-primary w-full text-base py-3.5 mt-2">Start rendering</button>
+
+                <p id="auth-note" class="text-center text-xs" style="color: var(--text-muted);">Requires a free account.</p>
+              </div>
+            </form>
+          </div>
+
+          <!-- Right: Pipeline progress + Log + Output -->
+          <div class="lg:col-span-7 flex flex-col gap-5">
+            <div id="pipeline-progress" class="surface p-5"></div>
+
+            <div class="terminal flex flex-col" style="min-height: 260px; max-height: 360px;">
+              <div class="terminal-header">
+                <div class="terminal-dots">
+                  <span class="terminal-dot"></span>
+                  <span class="terminal-dot"></span>
+                  <span class="terminal-dot"></span>
+                </div>
+                <span class="font-mono text-xs" style="color: var(--text-muted);">pipeline.log</span>
+                <span id="log-tally" class="tally-light" aria-label="Pipeline idle"></span>
+              </div>
+              <div id="log-body" class="terminal-body flex-1" role="log" aria-live="polite" aria-label="Pipeline execution log"></div>
+            </div>
+
+            <div id="video-output" class="hidden"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ═══════════════════════ About Project ═══════════════════════ -->
+    <section id="about-project" class="relative py-20 sm:py-24 px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-6" style="color: var(--text-primary);">About the Project</h2>
+        <div class="text-left surface p-8 sm:p-10 space-y-6" style="color: var(--text-secondary); line-height: 1.7; font-size: 1.05rem;">
+          <p>
+            <strong>Chimera</strong> is an ambitious, open-source multi-agent orchestration framework designed for fully autonomous short-form video production. Inspired by the mythological Chimera—a single entity composed of diverse, powerful parts—this project unites six specialized AI agents into one cohesive pipeline.
+          </p>
+          <p>
+            The pipeline is engineered to require zero human intervention post-prompt. Simply provide a topic, and the system dynamically researches the niche, scripts a compelling narrative, synthesizes professional voiceovers, sources relevant stock footage, generates a matching soundtrack, and seamlessly stitches it all together using programmatic video editing.
+          </p>
+          <p>
+            Built with modern technologies including <span style="color: var(--text-primary);">FastAPI</span> for the robust backend, <span style="color: var(--text-primary);">Groq LLMs</span> for lightning-fast inference, <span style="color: var(--text-primary);">Edge-TTS</span> for realistic vocal synthesis, and a custom <span style="color: var(--text-primary);">MoviePy</span> engine for precise timeline assembly.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════ About Me ═══════════════════════ -->
+    <section id="about-me" class="relative py-20 sm:py-24 px-4 sm:px-6 lg:px-8 mb-10">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-6" style="color: var(--text-primary);">About Me</h2>
+        <div class="flex flex-col md:flex-row items-center gap-8 surface p-8 sm:p-10 text-left">
+          <div class="w-32 h-32 md:w-48 md:h-48 rounded-full overflow-hidden flex-shrink-0" style="border: 3px solid var(--bay-border); box-shadow: 0 8px 24px rgba(0,0,0,0.3);">
+            <!-- Placeholder for developer avatar; using logo for now -->
+            <img src="/logo.png" alt="Developer Avatar" class="w-full h-full object-cover logo-breathe" style="background: var(--bay-inset);" />
+          </div>
+          <div class="space-y-4" style="color: var(--text-secondary); line-height: 1.6;">
+            <p class="text-xl font-semibold" style="color: var(--text-primary);">Arvind Singh</p>
+            <p>
+              I am a passionate software engineer and AI enthusiast focused on building autonomous systems and agentic workflows. Chimera represents my vision for the future of content creation—where intelligent orchestration removes technical barriers, allowing pure creativity to scale limitlessly.
+            </p>
+            <p>
+              My expertise lies in full-stack development, LLM integration, and designing robust architectures that can handle complex, multi-stage pipelines autonomously.
+            </p>
+            <div class="flex gap-4 pt-2">
+              <a href="https://github.com/Arvind13s" target="_blank" rel="noopener noreferrer" class="btn-secondary py-2 px-6 text-sm">Follow on GitHub</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════════════════ Footer ═══════════════════════ -->
+  <footer class="relative z-10 mt-auto py-10 px-4 sm:px-6 lg:px-8" style="border-top: 1px solid var(--bay-border); background: var(--bay-surface);">
+    <div class="max-w-7xl w-full mx-auto flex flex-col gap-6">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div class="flex items-center gap-2.5">
+          <img src="/logo.png" alt="" class="w-7 h-7 object-contain" />
+          <span class="text-base font-semibold" style="color: var(--text-primary);">Chimera</span>
+          <span class="text-xs font-mono" style="color: var(--text-muted);">v3.0</span>
+        </div>
+        <p class="text-xs max-w-md" style="color: var(--text-secondary);">
+          Open-source autonomous video production pipeline. Six AI agents, zero manual editing.
+        </p>
+      </div>
+
+      <div class="flex flex-wrap gap-2 pt-4" style="border-top: 1px solid var(--bay-border);">
+        <span class="text-xs font-mono px-2.5 py-1 rounded-md" style="background: var(--bay-black); color: var(--text-secondary); border: 1px solid var(--bay-border);">Groq Cloud</span>
+        <span class="text-xs font-mono px-2.5 py-1 rounded-md" style="background: var(--bay-black); color: var(--text-secondary); border: 1px solid var(--bay-border);">Edge-TTS</span>
+        <span class="text-xs font-mono px-2.5 py-1 rounded-md" style="background: var(--bay-black); color: var(--text-secondary); border: 1px solid var(--bay-border);">Jamendo</span>
+        <span class="text-xs font-mono px-2.5 py-1 rounded-md" style="background: var(--bay-black); color: var(--text-secondary); border: 1px solid var(--bay-border);">Freesound</span>
+        <span class="text-xs font-mono px-2.5 py-1 rounded-md" style="background: var(--bay-black); color: var(--text-secondary); border: 1px solid var(--bay-border);">Pexels</span>
+        <span class="text-xs font-mono px-2.5 py-1 rounded-md" style="background: var(--bay-black); color: var(--text-secondary); border: 1px solid var(--bay-border);">Pixabay</span>
+        <span class="text-xs font-mono px-2.5 py-1 rounded-md" style="background: var(--bay-black); color: var(--text-secondary); border: 1px solid var(--bay-border);">MoviePy</span>
+      </div>
+
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-4 text-xs" style="border-top: 1px solid var(--bay-border); color: var(--text-muted);">
+        <span>© <span id="footer-year"></span> Chimera. MIT License.</span>
+        <a href="https://github.com/Arvind13s/Chimera" target="_blank" rel="noopener noreferrer" class="transition-colors duration-200" style="color: var(--scope-teal-light);">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ═══════════════════════ Auth Modal ═══════════════════════ -->
+  <div id="auth-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4" role="dialog" aria-modal="true" aria-label="Sign in">
+    <div id="auth-backdrop" class="absolute inset-0 modal-backdrop"></div>
+
+    <div class="relative w-full max-w-md surface p-6 sm:p-8 overflow-hidden" style="background: var(--auth-modal-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); box-shadow: 0 24px 48px rgba(0, 0, 0, 0.6);">
+      <button type="button" id="auth-close" class="absolute top-4 right-4 w-8 h-8 rounded-lg flex items-center justify-center transition-colors duration-200 text-sm"
+              style="background: var(--bay-black); color: var(--text-muted); border: 1px solid var(--bay-border);" aria-label="Close dialog">✕</button>
+
+      <!-- Step 1: Credentials (Sign In / Register form) -->
+      <div id="auth-step-credentials">
+        <div class="mb-6">
+          <h2 id="auth-title" class="text-xl font-bold" style="color: var(--text-primary);">Sign in</h2>
+          <p id="auth-subtitle" class="text-xs mt-1" style="color: var(--text-secondary);">Access your Chimera studio</p>
+        </div>
+
+        <div class="flex rounded-lg p-1 mb-6" style="background: var(--bay-black); border: 1px solid var(--bay-border);" role="tablist">
+          <button type="button" id="tab-login" role="tab" aria-selected="true" class="flex-1 py-2 text-xs font-semibold rounded-md transition-all duration-200">Sign in</button>
+          <button type="button" id="tab-register" role="tab" aria-selected="false" class="flex-1 py-2 text-xs font-semibold rounded-md transition-all duration-200">Create account</button>
+        </div>
+
+        <form id="auth-form" class="flex flex-col gap-4">
+          <div id="field-name" class="hidden">
+            <label for="auth-name" class="text-xs font-medium mb-1.5 block" style="color: var(--text-label);">Name</label>
+            <input id="auth-name" type="text" placeholder="Alex Mercer" class="input-field text-sm" />
+          </div>
+
+          <div>
+            <label for="auth-email" class="text-xs font-medium mb-1.5 block" style="color: var(--text-label);">Email</label>
+            <input id="auth-email" type="email" placeholder="alex@example.com" class="input-field text-sm" required />
+          </div>
+
+          <div>
+            <div class="flex items-center justify-between mb-1.5">
+              <label for="auth-password" class="text-xs font-medium block" style="color: var(--text-label);">Password</label>
+              <button type="button" id="auth-forgot-link" class="text-[11px] transition-colors duration-200 hover:underline" style="color: var(--scope-teal-light); background: none; border: none; cursor: pointer;">Forgot password?</button>
+            </div>
+            <div class="relative flex items-center">
+              <input id="auth-password" type="password" placeholder="••••••••" class="input-field input-field--password text-sm" required minlength="6" />
+              <button type="button" id="toggle-password" class="password-toggle-btn" aria-label="Show password" title="Show password">
+                <svg class="w-4 h-4 pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M 3 9.5 C 6 15, 18 15, 21 9.5"></path>
+                  <path d="M 4.8 11.2 L 2.2 16"></path>
+                  <path d="M 9.5 13.5 L 8 18.5"></path>
+                  <path d="M 14.5 13.5 L 16 18.5"></path>
+                  <path d="M 19.2 11.2 L 21.8 16"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div id="field-confirm" class="hidden">
+            <label for="auth-confirm" class="text-xs font-medium mb-1.5 block" style="color: var(--text-label);">Confirm password</label>
+            <div class="relative flex items-center">
+              <input id="auth-confirm" type="password" placeholder="••••••••" class="input-field input-field--password text-sm" />
+              <button type="button" id="toggle-confirm" class="password-toggle-btn" aria-label="Show password" title="Show password">
+                <svg class="w-4 h-4 pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M 3 9.5 C 6 15, 18 15, 21 9.5"></path>
+                  <path d="M 4.8 11.2 L 2.2 16"></path>
+                  <path d="M 9.5 13.5 L 8 18.5"></path>
+                  <path d="M 14.5 13.5 L 16 18.5"></path>
+                  <path d="M 19.2 11.2 L 21.8 16"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div id="auth-error" class="hidden text-xs py-2 px-3 rounded-lg" style="background: rgba(232, 64, 44, 0.08); color: var(--status-error); border: 1px solid rgba(232, 64, 44, 0.2);" role="alert"></div>
+
+          <button type="submit" id="auth-submit" class="btn-primary w-full py-3 text-sm mt-1">Sign in</button>
+        </form>
+
+        <p class="text-center text-xs mt-5" style="color: var(--text-muted);">
+          <span id="auth-toggle-text">Don't have an account? </span>
+          <button type="button" id="auth-toggle-mode" class="font-semibold transition-colors duration-200" style="color: var(--scope-teal-light); background: none; border: none; cursor: pointer;">Create one</button>
+        </p>
+      </div>
+
+      <!-- Step 2: Email OTP Verification -->
+      <div id="auth-step-otp" class="hidden flex-col">
+        <div class="flex items-center gap-3 mb-5">
+          <button type="button" id="otp-btn-back" class="w-8 h-8 rounded-lg flex items-center justify-center transition-colors text-sm hover:border-bay-border-hover"
+                  style="background: var(--bay-black); color: var(--text-muted); border: 1px solid var(--bay-border);" aria-label="Go back">←</button>
+          <div>
+            <h2 class="text-xl font-bold" style="color: var(--text-primary);">Verify Email</h2>
+            <p class="text-xs mt-0.5" style="color: var(--text-secondary);">Enter the 6-digit code sent to your email</p>
+          </div>
+        </div>
+
+        <div class="rounded-lg p-3 text-xs mb-4 flex items-center gap-2.5" style="background: rgba(0, 212, 170, 0.06); border: 1px solid rgba(0, 212, 170, 0.2);">
+          <span class="text-base select-none">📧</span>
+          <div class="truncate">
+            <span style="color: var(--text-muted);">Code sent to </span>
+            <span id="otp-target-email" class="font-semibold" style="color: var(--scope-teal-light);"></span>
+          </div>
+        </div>
+
+        <form id="otp-form" class="flex flex-col gap-4">
+          <div>
+            <label for="otp-input" class="text-xs font-medium mb-1.5 block" style="color: var(--text-label);">Verification Code</label>
+            <input id="otp-input" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="6" autocomplete="one-time-code" placeholder="••••••" class="input-field input-field--otp text-sm" required />
+          </div>
+
+          <div id="otp-error" class="hidden text-xs py-2 px-3 rounded-lg" style="background: rgba(232, 64, 44, 0.08); color: var(--status-error); border: 1px solid rgba(232, 64, 44, 0.2);" role="alert"></div>
+          <div id="otp-success" class="hidden text-xs py-2 px-3 rounded-lg" style="background: rgba(0, 212, 170, 0.08); color: var(--scope-teal-light); border: 1px solid rgba(0, 212, 170, 0.2);" role="status"></div>
+
+          <button type="submit" id="otp-submit" class="btn-primary w-full py-3 text-sm mt-1">Verify & Create Account</button>
+        </form>
+
+        <div class="flex items-center justify-between text-xs mt-4 pt-3" style="border-top: 1px solid var(--bay-border); color: var(--text-muted);">
+          <span>Didn't receive code?</span>
+          <button type="button" id="otp-resend" class="font-semibold transition-colors duration-200" style="color: var(--scope-teal-light); background: none; border: none; cursor: pointer;">Resend code</button>
+        </div>
+
+        <p class="text-center text-xs mt-3" style="color: var(--text-muted);">
+          <button type="button" id="otp-change-email" class="transition-colors duration-200 hover:underline" style="color: var(--text-secondary); background: none; border: none; cursor: pointer;">Incorrect email? Edit details</button>
+        </p>
+      </div>
+
+      <!-- Step 3: Forgot Password (Request Reset Code) -->
+      <div id="auth-step-forgot" class="hidden flex-col">
+        <div class="flex items-center gap-3 mb-5">
+          <button type="button" id="forgot-btn-back" class="w-8 h-8 rounded-lg flex items-center justify-center transition-colors text-sm hover:border-bay-border-hover"
+                  style="background: var(--bay-black); color: var(--text-muted); border: 1px solid var(--bay-border);" aria-label="Go back">←</button>
+          <div>
+            <h2 class="text-xl font-bold" style="color: var(--text-primary);">Reset Password</h2>
+            <p class="text-xs mt-0.5" style="color: var(--text-secondary);">Enter your email to receive a reset code</p>
+          </div>
+        </div>
+
+        <form id="forgot-form" class="flex flex-col gap-4">
+          <div>
+            <label for="forgot-email" class="text-xs font-medium mb-1.5 block" style="color: var(--text-label);">Registered Email</label>
+            <input id="forgot-email" type="email" placeholder="alex@example.com" class="input-field text-sm" required />
+          </div>
+
+          <div id="forgot-error" class="hidden text-xs py-2 px-3 rounded-lg" style="background: rgba(232, 64, 44, 0.08); color: var(--status-error); border: 1px solid rgba(232, 64, 44, 0.2);" role="alert"></div>
+
+          <button type="submit" id="forgot-submit" class="btn-primary w-full py-3 text-sm mt-1">Send Reset Code</button>
+        </form>
+
+        <p class="text-center text-xs mt-4" style="color: var(--text-muted);">
+          <button type="button" id="forgot-back-link" class="font-semibold transition-colors duration-200" style="color: var(--scope-teal-light); background: none; border: none; cursor: pointer;">← Back to Sign in</button>
+        </p>
+      </div>
+
+      <!-- Step 4: Reset Password (Verify OTP & Set New Password) -->
+      <div id="auth-step-reset" class="hidden flex-col">
+        <div class="flex items-center gap-3 mb-5">
+          <button type="button" id="reset-btn-back" class="w-8 h-8 rounded-lg flex items-center justify-center transition-colors text-sm hover:border-bay-border-hover"
+                  style="background: var(--bay-black); color: var(--text-muted); border: 1px solid var(--bay-border);" aria-label="Go back">←</button>
+          <div>
+            <h2 class="text-xl font-bold" style="color: var(--text-primary);">Set New Password</h2>
+            <p class="text-xs mt-0.5" style="color: var(--text-secondary);">Enter the code and choose a new password</p>
+          </div>
+        </div>
+
+        <div class="rounded-lg p-3 text-xs mb-4 flex items-center gap-2.5" style="background: rgba(232, 64, 44, 0.06); border: 1px solid rgba(232, 64, 44, 0.2);">
+          <span class="text-base select-none">🔑</span>
+          <div class="truncate">
+            <span style="color: var(--text-muted);">Reset code sent to </span>
+            <span id="reset-target-email" class="font-semibold" style="color: var(--tally-red-light);"></span>
+          </div>
+        </div>
+
+        <form id="reset-form" class="flex flex-col gap-4">
+          <div>
+            <label for="reset-otp-input" class="text-xs font-medium mb-1.5 block" style="color: var(--text-label);">Verification Code</label>
+            <input id="reset-otp-input" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="6" autocomplete="one-time-code" placeholder="••••••" class="input-field input-field--otp text-sm" required />
+          </div>
+
+          <div>
+            <label for="reset-new-password" class="text-xs font-medium mb-1.5 block" style="color: var(--text-label);">New Password</label>
+            <div class="relative flex items-center">
+              <input id="reset-new-password" type="password" placeholder="••••••••" class="input-field input-field--password text-sm" required minlength="6" />
+              <button type="button" id="toggle-reset-password" class="password-toggle-btn" aria-label="Show password" title="Show password">
+                <svg class="w-4 h-4 pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M 3 9.5 C 6 15, 18 15, 21 9.5"></path>
+                  <path d="M 4.8 11.2 L 2.2 16"></path>
+                  <path d="M 9.5 13.5 L 8 18.5"></path>
+                  <path d="M 14.5 13.5 L 16 18.5"></path>
+                  <path d="M 19.2 11.2 L 21.8 16"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div>
+            <label for="reset-confirm-password" class="text-xs font-medium mb-1.5 block" style="color: var(--text-label);">Confirm New Password</label>
+            <div class="relative flex items-center">
+              <input id="reset-confirm-password" type="password" placeholder="••••••••" class="input-field input-field--password text-sm" required minlength="6" />
+              <button type="button" id="toggle-reset-confirm" class="password-toggle-btn" aria-label="Show password" title="Show password">
+                <svg class="w-4 h-4 pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M 3 9.5 C 6 15, 18 15, 21 9.5"></path>
+                  <path d="M 4.8 11.2 L 2.2 16"></path>
+                  <path d="M 9.5 13.5 L 8 18.5"></path>
+                  <path d="M 14.5 13.5 L 16 18.5"></path>
+                  <path d="M 19.2 11.2 L 21.8 16"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div id="reset-error" class="hidden text-xs py-2 px-3 rounded-lg" style="background: rgba(232, 64, 44, 0.08); color: var(--status-error); border: 1px solid rgba(232, 64, 44, 0.2);" role="alert"></div>
+          <div id="reset-success" class="hidden text-xs py-2 px-3 rounded-lg" style="background: rgba(0, 212, 170, 0.08); color: var(--scope-teal-light); border: 1px solid rgba(0, 212, 170, 0.2);" role="status"></div>
+
+          <button type="submit" id="reset-submit" class="btn-primary w-full py-3 text-sm mt-1">Update Password & Sign In</button>
+        </form>
+
+        <div class="flex items-center justify-between text-xs mt-4 pt-3" style="border-top: 1px solid var(--bay-border); color: var(--text-muted);">
+          <span>Didn't receive code?</span>
+          <button type="button" id="reset-resend" class="font-semibold transition-colors duration-200" style="color: var(--scope-teal-light); background: none; border: none; cursor: pointer;">Resend code</button>
+        </div>
+
+        <p class="text-center text-xs mt-3" style="color: var(--text-muted);">
+          <button type="button" id="reset-back-link" class="transition-colors duration-200 hover:underline" style="color: var(--text-secondary); background: none; border: none; cursor: pointer;">← Back to Sign in</button>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="/js/main.js"></script>
+</body>
+</html>

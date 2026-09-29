@@ -1,7 +1,21 @@
-moviepy==1.0.3
-edge-tts
-google-generativeai
-requests
+# ── Backend Server ────────────────────────────────────────────
+fastapi
+uvicorn
 python-dotenv
-imageio-ffmpeg
-decorator==4.4.2
+gradio
+
+# ── LLM ──────────────────────────────────────────────────────
+groq
+
+# ── Video Processing ─────────────────────────────────────────
+moviepy
+Pillow
+
+# ── Audio ────────────────────────────────────────────────────
+edge-tts
+
+# ── Music Metadata ───────────────────────────────────────────
+musicbrainzngs
+
+# ── HTTP ─────────────────────────────────────────────────────
+requests
