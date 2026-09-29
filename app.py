@@ -2,6 +2,7 @@
 import os
 import gradio as gr
 import spaces
+import uvicorn
 from backend.server import app
 
 # ZeroGPU requires at least one @spaces.GPU decorated function connected to Gradio
@@ -10,8 +11,7 @@ def gpu_compute():
     return "GPU Ready"
 
 # Create a Gradio interface
-with gr.Blocks(title="Chimera AI Video Studio") as demo:
-    # Hidden button triggering the GPU function so ZeroGPU registers it during startup
+with gr.Blocks(title="Chimera AI Video Studio", analytics_enabled=False) as demo:
     hidden_btn = gr.Button(visible=False)
     hidden_out = gr.Textbox(visible=False)
     hidden_btn.click(gpu_compute, outputs=hidden_out)
@@ -22,8 +22,9 @@ with gr.Blocks(title="Chimera AI Video Studio") as demo:
         """
     )
 
-# Mount the FastAPI backend onto the Gradio app so all /api/* routes and static files are served seamlessly
-app = gr.mount_gradio_app(app, demo, path="/gradio")
+# Mount the Gradio demo onto our FastAPI app at /gradio so ZeroGPU hooks into it
+app = gr.mount_gradio_app(app, demo, path="/gradio", ssr_mode=False)
 
 if __name__ == "__main__":
-    demo.launch(server_name="0.0.0.0", server_port=int(os.environ.get("PORT", 7860)), css="footer {visibility: hidden}")
+    port = int(os.environ.get("PORT", 7860))
+    uvicorn.run(app, host="0.0.0.0", port=port)
