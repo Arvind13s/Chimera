@@ -3,8 +3,8 @@ title: Chimera AI Video Studio
 emoji: 🦁
 colorFrom: red
 colorTo: blue
-sdk: docker
-app_port: 7860
+sdk: gradio
+app_file: app.py
 pinned: false
 license: mit
 short_description: Autonomous multi-agent pipeline for short-form video
