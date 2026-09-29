@@ -23,6 +23,16 @@ from backend.routes.auth import router as auth_router
 from backend.routes.generate import router as generate_router
 from backend.routes.config_routes import router as config_router
 
+# Hugging Face ZeroGPU compatibility: ZeroGPU checks for @spaces.GPU during startup
+try:
+    import spaces
+    @spaces.GPU
+    def _zerogpu_init():
+        """Dummy GPU function to satisfy Hugging Face ZeroGPU runner."""
+        return True
+except Exception:
+    pass
+
 # ── Logging ──────────────────────────────────────────────────
 logging.basicConfig(
     level=logging.INFO,

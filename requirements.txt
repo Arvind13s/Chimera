@@ -3,6 +3,7 @@ fastapi
 uvicorn
 python-dotenv
 gradio
+spaces
 
 # ── LLM ──────────────────────────────────────────────────────
 groq
