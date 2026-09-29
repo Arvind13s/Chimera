@@ -14,7 +14,7 @@ short_description: Autonomous multi-agent pipeline for short-form video
 
 **Chimera** is an autonomous multi-agent AI system that generates viral short-form videos (YouTube Shorts, Instagram Reels, TikTok) end-to-end. Six specialized AI agents collaborate in real-time: brainstorming topics, writing scripts, generating voiceovers, sourcing music, finding stock footage, and rendering cinematic videos.
 
-**Deployed** on HF : https://huggingface.co/spaces/Arvind13s/Chimera-AI-Video-Agent
+***Deployed on HF*** : https://huggingface.co/spaces/Arvind13s/Chimera-AI-Video-Agent
 
 ## ✨ Features
 
